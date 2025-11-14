@@ -10,8 +10,8 @@
       >
         <!-- 卡牌背面 -->
         <div class="card-back">🔮</div>
-        <!-- 卡牌正面 -->
-        <div class="card-front">{{ card.name }}</div>
+        <!-- 卡牌正面 (空白) -->
+        <div class="card-front"></div>
       </div>
     </div>
   </div>

@@ -1,8 +1,9 @@
 <template>
   <div class="home-page">
-    <h1>Skip Day 🔮</h1>
+    <h1>今天要不要請假占卜機</h1>
+    <p class="app-name">Skip Day 🔮</p>
     <p class="subtitle">Tap the cards. Escape reality.</p>
-    <button class="start-btn" @click="$emit('start')">Start My Fate 🔮</button>
+    <button class="start-btn" @click="$emit('start')">Start !</button>
     <p class="disclaimer">此工具僅供娛樂參考 😄</p>
   </div>
 </template>
@@ -18,6 +19,14 @@ defineEmits(['start'])
 }
 
 h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 8px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.app-name {
   font-size: 48px;
   color: #6b4ce6;
   margin-bottom: 10px;
