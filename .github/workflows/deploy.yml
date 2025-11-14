@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -22,8 +25,12 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+      - name: Deploy to gh-pages
+        run: |
+          cd dist
+          git init
+          git config user.email "deploy@github.com"
+          git config user.name "Deploy Bot"
+          git add -A
+          git commit -m "Deploy to GitHub Pages"
+          git push --force https://${{ github.token }}@github.com/${{ github.repository }}.git HEAD:gh-pages
