@@ -10,8 +10,8 @@
       >
         <!-- 卡牌背面 -->
         <div class="card-back">🔮</div>
-        <!-- 卡牌正面 (空白) -->
-        <div class="card-front"></div>
+        <!-- 卡牌正面 (顯示 emoji) -->
+        <div class="card-front">{{ card.emoji }}</div>
       </div>
     </div>
   </div>
@@ -108,7 +108,7 @@ const handleCardClick = (card) => {
   color: #222;
   opacity: 0;
   transform: rotateY(180deg);
-  font-size: 12px;
+  font-size: 50px;
   padding: 10px;
   text-align: center;
   line-height: 1.2;
