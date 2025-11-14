@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build and Deploy to GitHub Pages
 
 on:
   push:
@@ -17,27 +17,38 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
+      - name: Build Vite project
         run: npm run build
+        env:
+          NODE_ENV: production
+
+      - name: Verify dist directory
+        run: |
+          echo "Contents of dist directory:"
+          ls -lah dist/
+          echo ""
+          echo "Checking index.html exists:"
+          test -f dist/index.html && echo "✓ index.html found" || echo "✗ index.html NOT found"
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: ./dist
 
   deploy:
     environment:
